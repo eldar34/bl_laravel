@@ -16,7 +16,7 @@
             {{ csrf_field() }}
 
             {{-- Form include --}}
-            @include('admin.article.partials.form')
+            @include('admin.articles.partials.form')
 
             <input type="hidden" name="created_by" value="{{Auth::id()}}">
         </form>
