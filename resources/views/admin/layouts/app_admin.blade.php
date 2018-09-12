@@ -40,6 +40,9 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{route('admin.index')}}">Панель состояния</a>
+                    </li>
                     &nbsp;<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="flase">Блог</a>
                         <ul class="dropdown-menu" role="menu">
