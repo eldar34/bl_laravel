@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -43,14 +44,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $article = Article::create($request->all());
+        $inputId = (int) $request->input('created_by');
+        if($inputId === 1)
+        {
+            $article = Article::create($request->all());
 
-        // Categories
-        if($request->input('categories')) :
-            $article->categories()->attach($request->input('categories'));
-        endif;
+            // Categories
+            if ($request->input('categories')) :
+                $article->categories()->attach($request->input('categories'));
+            endif;
 
-        return redirect()->route('admin.article.index');
+            return redirect()->route('admin.article.index');
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -72,11 +79,14 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
         return view('admin.articles.edit', [
             'article'    => $article,
             'categories' => Category::with('children')->where('parent_id', 0)->get(),
             'delimiter'  => ''
         ]);
+
+
     }
 
     /**
@@ -88,15 +98,22 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->update($request->except('slug'));
+        $inputId = (int) $request->input('modified_by');
+        if($inputId === 1)
+        {
+            $article->update($request->except('slug'));
 
-        // Categories
-        $article->categories()->detach();
-        if($request->input('categories')) :
-            $article->categories()->attach($request->input('categories'));
-        endif;
+            // Categories
+            $article->categories()->detach();
+            if($request->input('categories')) :
+                $article->categories()->attach($request->input('categories'));
+            endif;
 
-        return redirect()->route('admin.article.index');
+            return redirect()->route('admin.article.index');
+        }else{
+            abort(404);
+        }
+
     }
 
     /**
@@ -105,11 +122,17 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Request $request, Article $article)
     {
-        $article->categories()->detach();
-        $article->delete();
+        $inputId = (int) $request->input('created_by');
+        if($inputId === 1)
+        {
+            $article->categories()->detach();
+            $article->delete();
 
-        return redirect()->route('admin.article.index');
+            return redirect()->route('admin.article.index');
+        }else{
+            abort(404);
+        }
     }
 }

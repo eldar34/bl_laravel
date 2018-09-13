@@ -14,6 +14,7 @@
 
         <form class="form-horizontal" action="{{route('admin.category.update', $category)}}" method="post">
             <input type="hidden" name="_method" value="put">
+            <input type="hidden" name="created_by" value="{{Auth::id()}}">
             {{ csrf_field() }}
 
             {{-- Form include --}}

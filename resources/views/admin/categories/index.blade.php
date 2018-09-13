@@ -24,6 +24,7 @@
                             <td class="text-right">
                                 <form onsubmit="if(confirm('Удалить')){return true}else{return false}" action="{{route('admin.category.destroy', $category)}}" method="post">
                                     <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="created_by" value="{{Auth::id()}}">
                                         {{ csrf_field() }}
                                     <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
                                         <a class="btn btn-default" href="{{route('admin.category.edit', $category)}}"><i class="fa fa-edit"></i></a>

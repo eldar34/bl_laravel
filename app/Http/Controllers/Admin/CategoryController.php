@@ -43,8 +43,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->all());
-        return redirect()->route('admin.category.index');
+        $inputId = (int) $request->input('created_by');
+        if($inputId === 1)
+        {
+            Category::create($request->all());
+            return redirect()->route('admin.category.index');
+        }else{
+            abort(404);
+        }
+
     }
 
     /**
@@ -82,8 +89,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->except('slug'));
-        return redirect()->route('admin.category.index');
+        $inputId = (int) $request->input('created_by');
+        if($inputId === 1)
+        {
+            $category->update($request->except('slug'));
+            return redirect()->route('admin.category.index');
+        }else{
+            abort(404);
+        }
+
     }
 
     /**
@@ -92,9 +106,16 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, Category $category)
     {
-        $category->delete();
-        return redirect()->route('admin.category.index');
+        $inputId = (int) $request->input('created_by');
+        if($inputId === 1)
+        {
+            $category->delete();
+            return redirect()->route('admin.category.index');
+        }else{
+            abort(404);
+        }
+
     }
 }

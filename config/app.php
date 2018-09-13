@@ -184,6 +184,7 @@ return [
         //Our providers
 
         App\Providers\BlogServiceProvider::class,
+        Dlnsk\HierarchicalRBAC\HRBACServiceProvider::class,
 
     ],
 

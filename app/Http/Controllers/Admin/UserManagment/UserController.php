@@ -15,6 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        //$this->authorize('editPost', $article);
+
         return view('admin.user_managment.users.index', [
             'users' => User::paginate(10)
         ]);

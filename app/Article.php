@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 
 class Article extends Model
 {
+    public function sayHello(){
+        /*if ($request->user()->cannot('update-post', $article)) {
+            abort(403);
+        }*/
+        /*echo "Hello";
+        exit;*/
+    }
     // Mass assigned
     protected $fillable = ['title', 'slug', 'description_short', 'description', 'image', 'image_show', 'meta_title', 'meta_description', 'meta_keyword', 'published', 'created_by', 'modified_by'];
 

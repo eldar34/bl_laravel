@@ -46,16 +46,21 @@
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Блог</a>
                           <ul class="dropdown-menu" role="menu">
+                              <!-- Текущий пользователь имеет любую из ролей -->
                             <li><a href="{{route('admin.category.index')}}">Категории</a></li>
                             <li><a href="{{route('admin.article.index')}}">Материалы</a></li>
                           </ul>
                         </li>
+                        @role('manager')
+
                         <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Управление пользователями</a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{route('admin.user_managment.user.index')}}">Пользователи</a></li>
-                          </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Управление пользователями</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{route('admin.user_managment.user.index')}}">Пользователи</a></li>
+                            </ul>
                         </li>
+
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
