@@ -11,7 +11,7 @@
   @endcomponent
 
   <hr>
-
+@role('manager')
   <a href="{{route('admin.user_managment.user.create')}}" class="btn btn-primary pull-right"><i class="fa fa-plus-square-o"></i> Создать пользователя</a>
   <table class="table table-striped">
     <thead>
@@ -51,6 +51,7 @@
       </tr>
     </tfoot>
   </table>
+  @endrole
 </div>
 
 @endsection

@@ -118,6 +118,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('editPost', $user);
         $user->delete();
 
         return redirect()->route('admin.user_managment.user.index');

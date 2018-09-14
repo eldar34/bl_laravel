@@ -11,7 +11,7 @@
   @endcomponent
 
   <hr />
-
+@role('manager')
   <form class="form-horizontal" action="{{route('admin.user_managment.user.store')}}" method="post">
     {{ csrf_field() }}
 
@@ -19,6 +19,7 @@
     @include('admin.user_managment.users.partials.form')
 
   </form>
+@endrole
 </div>
 
 @endsection

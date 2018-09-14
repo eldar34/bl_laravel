@@ -1,5 +1,7 @@
 <?php
 
+use App\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +25,18 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth']], 
     });
 });
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('blog.home');
+});*/
+
+Route::get('/', function () {
+    $slug = 'vtoraya-1209181256';
+    $category = Category::where('slug', $slug)->first();
+
+    return view('blog.category', [
+        'category' => $category,
+        'articles' => $category->articles()->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
+    ]);
 });
 
 Auth::routes();
