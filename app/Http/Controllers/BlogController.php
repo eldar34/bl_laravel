@@ -14,7 +14,8 @@ class BlogController extends Controller
 
     	return view('blog.category', [
     		'category' => $category,
-    		'articles' => $category->articles()->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
+    		'articles' => $category->articles()->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12),
+            
     	]);
     }
 

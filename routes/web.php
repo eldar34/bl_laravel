@@ -30,7 +30,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth']], 
 });*/
 
 Route::get('/', function () {
-    $slug = 'vtoraya-1209181256';
+    $slug = 'books-1409181201';
     $category = Category::where('slug', $slug)->first();
 
     return view('blog.category', [

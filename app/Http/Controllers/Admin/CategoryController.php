@@ -89,6 +89,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        //dd($request->ip());
         $inputId = (int) $request->input('created_by');
         if($inputId === 1)
         {
